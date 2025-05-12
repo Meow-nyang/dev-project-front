@@ -2,12 +2,22 @@ import React, { useState } from 'react';
 import logo from '../assets/image.svg';
 import searchIcon from '../assets/SearchImage.svg';
 import styles from '../styles/Header.module.scss';
+import SignIn from './SignIn';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
 
   const toggleCategoryMenu = () => {
     setIsMenuOpen((prev) => !prev);
+  };
+
+  const openSignInModal = () => {
+    setIsSignInOpen(true);
+  };
+
+  const closeSignInModal = () => {
+    setIsSignInOpen(false);
   };
 
   return (
@@ -29,6 +39,7 @@ const Header = () => {
       </div>
       {/* Menu */}
       <nav className={styles.menu}>
+        <button onClick={openSignInModal}>Login</button>
         <a href='/'>Home</a>
         <a href='/post'>Post</a>
         <a href='/chat'>Chat</a>
@@ -50,6 +61,9 @@ const Header = () => {
           </ul>
         </div>
       )}
+
+      {/* SignIn Modal */}
+      <SignIn isOpen={isSignInOpen} close={closeSignInModal} />
     </header>
   );
 };
