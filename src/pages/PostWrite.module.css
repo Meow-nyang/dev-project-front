@@ -1,0 +1,578 @@
+:root {
+  --text1: #212529;
+  --text2: #495057;
+  --text3: #868E96;
+  --border1: #DEE2E6;
+  --accent: #1c5cff;
+  --primary2: #20c997
+}
+
+.wrapper {
+  width: 100%;
+  height: calc(100vh - 4rem);
+  display: flex;
+}
+
+.wrapper .left {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  box-shadow: rgba(0, 0, 0, 0.016) 0 0 8px;
+  position: relative;
+}
+
+.wrapper .right {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-height: 100%;
+  position: relative;
+  background-color: #FBFDFC;
+}
+
+.section {
+  min-height: 0;
+  padding-bottom: 4rem;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerContainer {
+  max-height: 450px;
+  opacity: 1;
+  padding-top: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.titleInput {
+  font-size: 2.75rem;
+  display: block;
+  line-height: 1.5;
+  outline: none;
+  border: none;
+  overflow-y: auto;
+  font-weight: bold;
+  background: transparent;
+  width: 100%;
+  color: var(--text1);
+  resize: none;
+  padding: 0;
+  height: 66px;
+  /*word-spacing: -0.5rem;*/
+}
+
+.titleTagHr {
+  background: rgb(73, 80, 87);
+  height: 6px;
+  width: 4rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 1px;
+}
+
+.tagContainer {
+  color: var(--text1);
+  font-size: 1.125rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tagInput {
+  background: transparent;
+  display: inline-flex;
+  outline: none;
+  cursor: text;
+  font-size: 1.125rem;
+  line-height: 2rem;
+  margin-bottom: 0.75rem;
+  padding: 0;
+  min-width: 8rem;
+  border: none;
+  color: var(--text1);
+}
+
+.tagRegisterInfo {
+  display: block;
+  width: 100%;
+  color: var(--text2);
+}
+
+/* footer section */
+footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+}
+
+.footerSection {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 4rem;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 0 8px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerButton {
+  height: 2.5rem;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  background: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  outline: none;
+  color: var(--text1);
+}
+
+.footerSvg {
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.footerSpan {
+  font-size: 1.125rem;
+}
+
+.footerButtonContainer {
+  display: flex;
+  align-items: center;
+}
+
+.footerCommonBtn {
+  height: 2.5rem;
+  font-size: 1.125rem;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.25rem;
+  border-radius: 4px;
+  margin-left: 1.125rem;
+}
+
+.footerTemporarySaveBtn {
+  color: var(--accent);
+}
+
+.footerPublishBtn {
+  background: var(--accent);
+  color: #fff;
+  margin-right: 4rem;
+}
+
+/* 코드미러 에디터 영역 */
+.codeMirror {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 미리보기 스타일 */
+.previewWrapper {
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  word-break: break-word;
+  padding: 3rem;
+  flex: 1 1 0;
+  overflow-y: auto;
+  color: #212529;
+  scroll-behavior: smooth;
+}
+
+.previewContainer {
+  /*max-width: 768px;*/
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100%;
+}
+
+.previewTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 4rem;
+  margin-top: 2.75rem;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  gap: 0.5rem;
+}
+
+.tag {
+  padding: 0.5rem 1rem;
+  background: #f1f3f5;
+  color: #495057;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.previewContent {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  transition: color 0.125s ease-in;
+  color: var(--text1);
+  letter-spacing: -0.004em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.previewContent h1,
+.previewContent h2,
+.previewContent h3,
+.previewContent h4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.previewContent p {
+  margin-bottom: 1rem;
+  word-break: break-word;
+}
+
+/* 줄바꿈 스타일 추가 */
+.previewContent br {
+  display: block;
+  content: "";
+  margin-top: 0.5rem;
+}
+
+.previewContent img {
+  max-width: 100%;
+  height: auto;
+  margin: 2rem 0;
+}
+
+.previewContent pre {
+  background: #fbfcfd;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+
+.previewContent blockquote {
+  border-left: 4px solid #20c997;
+  background: #F8F9FA;
+  padding: 1rem 1rem 1rem 2rem;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  margin-left: 0;
+  margin-right: 0;
+  color: var(--text1);
+}
+
+.previewContent blockquote p {
+  margin: 0;
+}
+
+.previewContent a {
+  color: #12B886;
+  text-decoration: none;
+}
+
+.previewContent a:hover {
+  text-decoration: underline;
+}
+
+.previewPlaceholder {
+  color: #adb5bd;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 20rem;
+}
+
+.toolbarContainer {
+  top: 0;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  z-index: 10;
+  transition: 0.125s ease-in;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  overflow: auto;
+  width: auto;
+}
+
+.toolBarButtonContainer {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  color: var(--text3);
+  cursor: pointer;
+  flex-shrink: 0;
+  background: none;
+  outline: none;
+  border: none;
+  padding: 0;
+}
+
+.toolBarButtonContainer:hover {
+  color: var(--text1);
+  background: #f8f9fa;
+}
+
+.toolBarDivContainer {
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: serif;
+}
+
+.toolBarSpan {
+  font-size: 0.75rem;
+}
+
+.toolBarSectionHr {
+  width: 1px;
+  height: 1.25rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  background: var(--border1);
+}
+
+/* 에디터 컨테이너 스타일 */
+.editorContainer {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.editorSection {
+  padding: 2.5rem 3rem;
+  min-height: 0;
+  height: 100%;
+}
+
+.editorHeader {
+  max-height: 450px;
+  opacity: 1;
+}
+
+.editorWrapper {
+  min-height: 0;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+}
+
+/* 태그 관련 스타일 */
+.tagContainer .tag {
+  display: inline-flex;
+  align-items: center;
+  height: 2rem;
+  background: #F8F9FA;
+  color: #12B886;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1rem;
+  border-radius: 1rem;
+  margin-right: 0.75rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+}
+
+.tagRemoveButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: #868e96;
+  margin-left: 0.5rem;
+  padding: 0;
+}
+
+.tagRemoveButton:hover {
+  color: #495057;
+}
+
+
+.markdownTextarea {
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  line-height: 1.5;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: 'Fira Mono', monospace, sans-serif;
+  overflow-y: auto;
+  color: var(--text1);
+  background: transparent;
+  scroll-behavior: smooth;
+  font-size: 1.125rem;
+}
+
+.markdownTextareaItalic {
+  font-style: italic;
+  font-size: 1.125rem;
+  border: none;
+  outline: none;
+  resize: none;
+  height: 100%;
+}
+
+/* CodeMirror 스타일 */
+:global(.CodeMirror) {
+  min-height: 500px !important;
+  font-family: 'Fira Mono', monospace, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text1);
+}
+
+:global(.CodeMirror-scroll) {
+  min-height: 500px;
+}
+
+:global(.CodeMirror-placeholder) {
+  color: var(--text3);
+  font-style: italic;
+}
+
+/* CodeMirror 테마 스타일 보강 */
+:global(.cm-s-one-light) {
+  background: #fafafa;
+}
+
+:global(.cm-s-one-dark) {
+  background: #282c34;
+  color: #abb2bf;
+}
+
+/* 링크 추가 UI */
+.addLinkWrapper {
+  position: absolute;
+  z-index: 100;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+.addLinkContainer {
+  padding: 1rem;
+  min-width: 300px;
+}
+
+.linkInput {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border1);
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.linkButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.cancelButton {
+  padding: 0.5rem 1rem;
+  background: var(--border1);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirmButton {
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 1024px) {
+  .modalSection {
+    width: 704px;
+  }
+
+  .wrapper .right {
+    display: none;
+  }
+
+  .wrapper .left {
+    width: 100%;
+  }
+
+  .toolbarContainer {
+    flex-wrap: nowrap;
+    overflow: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .editorHeader, .editorWrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .headerContainer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .footerPublishBtn {
+    margin-right: 5rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .wrapper .right {
+    width: 50%;
+    /*height: 100%;*/
+  }
+
+  .wrapper .left {
+    width: 50%;
+    position: relative;
+  }
+
+  .wrapper .left .section {
+    margin-left: 3rem;
+  }
+
+  .left footer {
+    width: 50%;
+  }
+
+  .left footer .footerPublishBtn {
+    margin-right: 1.5rem;
+  }
+}
