@@ -1,0 +1,30 @@
+.home {
+  padding: 105px;
+}
+
+.cardGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: space-between;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+
+  button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+  }
+
+  .active {
+    background: #4b6bfb;
+    color: white;
+    border: none;
+  }
+}
