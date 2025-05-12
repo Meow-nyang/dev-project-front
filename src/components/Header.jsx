@@ -33,6 +33,7 @@ const Header = () => {
         <a href='/post'>Post</a>
         <a href='/chat'>Chat</a>
         <a href='/mypage'>MyPage</a>
+        <a href='/logout'>LogOut</a>
         <button className={styles.hamburger} onClick={toggleCategoryMenu}>
           ☰
         </button>
@@ -42,7 +43,7 @@ const Header = () => {
       {isMenuOpen && (
         <div className={styles.modal}>
           <ul>
-            <li>전자기기</li>
+            <li>디지털</li>
             <li>의류</li>
             <li>도서</li>
             <li>기타</li>
