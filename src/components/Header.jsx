@@ -30,7 +30,6 @@ const Header = () => {
 
   const closeSignInModal = () => {
     setIsSignInOpen(false);
-    setIsLoggedIn(true); // 예시용 로그인 처리
   };
 
   const handleLogout = () => {

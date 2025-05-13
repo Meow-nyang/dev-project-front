@@ -1,6 +1,7 @@
 .home {
   padding: 10px;
 }
+
 .topBar {
   display: flex;
   align-items: center;
@@ -18,9 +19,8 @@
   display: flex;
   align-items: center;
   gap: 8px; // if you want space between icon and text
-  
-  
 }
+
 .search {
   position: relative;
   width: 516px;
@@ -49,7 +49,6 @@
     background: transparent;
   }
 }
-
 
 .cardGrid {
   display: flex;
