@@ -1,6 +1,55 @@
 .home {
   padding: 10px;
 }
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: 20px; // 버튼과 검색창 사이 간격
+  margin-left: 200px; // 기존 locationbotton의 margin-left 대체
+}
+
+.locationbotton {
+  border: none;
+  background: #1C5CFF;
+  border-radius: 25px;
+  color: white; // ✅ This sets the text color inside the button
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px; // if you want space between icon and text
+  
+  
+}
+.search {
+  position: relative;
+  width: 516px;
+  height: 46px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 62.855px;
+  border: 1.209px solid #dadada;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  margin-right: 50px;
+
+  &__icon {
+    width: 16.922px;
+    height: 16.922px;
+    flex-shrink: 0;
+    margin-right: 12px;
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+    background: transparent;
+  }
+}
+
 
 .cardGrid {
   display: flex;

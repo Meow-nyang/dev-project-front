@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/image.svg';
-import searchIcon from '../assets/SearchImage.svg';
 import styles from '../styles/Header.module.scss';
 import SignIn from './SignIn';
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
+import useSignOut from 'react-auth-kit/hooks/useSignOut';
+import { redirect } from 'react-router-dom';
 
 const Header = () => {
+  const isAuthenticated = useIsAuthenticated();
+  const signOut = useSignOut();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated); // 로그인 상태
 
   // 채팅 데이터 생성 (서버 연결 없이 테스트용)
   const chatData = {
@@ -25,6 +30,13 @@ const Header = () => {
 
   const closeSignInModal = () => {
     setIsSignInOpen(false);
+    setIsLoggedIn(true); // 예시용 로그인 처리
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    signOut();
+    redirect('/');
   };
 
   return (
@@ -44,16 +56,37 @@ const Header = () => {
           className={styles.search__input}
         />
       </div>
+
       {/* Menu */}
       <nav className={styles.menu}>
-        <Link to='/'>Home</Link>
-        <Link to='/post'>Post</Link>
-
-        <Link to='/chat' state={chatData}>
-          <button className={styles.button}>Chat</button>
-        </Link>
-        <Link to='/mypage'>MyPage</Link>
-        <Link to='/logout'>LogOut</Link>
+        {!isLoggedIn ? (
+          <div className={styles.menuLeft}>
+            <a onClick={openSignInModal} className={styles.loginbotton}>
+              Login
+            </a>
+            <a href='/'>Home</a>
+          </div>
+        ) : (
+          <>
+            <a href='/post'>Post</a>
+            <a href='/chat'>Chat</a>
+            <a href='/mypage'>MyPage</a>
+            <a onClick={handleLogout}>LogOut</a>
+          </>
+        )}
+        {!isLoggedIn ? (
+          <>
+            <button onClick={openSignInModal}>Login</button>
+            <a href='/'>Home</a>
+          </>
+        ) : (
+          <>
+            <a href='/post'>Post</a>
+            <a href='/chat'>Chat</a>
+            <a href='/mypage'>MyPage</a>
+            <button onClick={handleLogout}>LogOut</button>
+          </>
+        )}
         <button className={styles.hamburger} onClick={toggleCategoryMenu}>
           ☰
         </button>
