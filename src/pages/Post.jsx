@@ -5,8 +5,9 @@ import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/display/placeholder';
 import WriteMarkdownEditor from '../components/write/WriteMarkdownEditor.jsx';
 import MarkdownPreview from '../components/write/MarkdownPreview.jsx';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, redirect, useNavigate } from 'react-router-dom';
 import PublishModal from '../components/Modal/PublishModal.jsx';
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
 
 function PostWrite() {
   const [title, setTitle] = useState('');
@@ -30,6 +31,9 @@ function PostWrite() {
   const handleChangeTags = (newTags) => {
     setTags(newTags);
   };
+
+  const isAuthenticated = useIsAuthenticated();
+  if (!isAuthenticated) return <Navigate to={"/"} replace />
 
   return (
     <>

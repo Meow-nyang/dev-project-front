@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PostCard from '../components/PostCard';
 import styles from '../styles/Home.module.scss';
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 
 const dummyData = Array.from({ length: 45 }, (_, i) => ({
   id: i + 1,

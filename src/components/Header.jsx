@@ -3,10 +3,16 @@ import logo from '../assets/image.svg';
 import searchIcon from '../assets/SearchImage.svg';
 import styles from '../styles/Header.module.scss';
 import SignIn from './SignIn';
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
+import useSignOut from 'react-auth-kit/hooks/useSignOut';
+import { redirect } from 'react-router-dom';
 
 const Header = () => {
+  const isAuthenticated = useIsAuthenticated();
+  const signOut = useSignOut();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated); // 로그인 상태
 
   const toggleCategoryMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -18,6 +24,12 @@ const Header = () => {
 
   const closeSignInModal = () => {
     setIsSignInOpen(false);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    signOut();
+    redirect('/');
   };
 
   return (
@@ -37,14 +49,22 @@ const Header = () => {
           className={styles.search__input}
         />
       </div>
+
       {/* Menu */}
       <nav className={styles.menu}>
-        <button onClick={openSignInModal}>Login</button>
-        <a href='/'>Home</a>
-        <a href='/post'>Post</a>
-        <a href='/chat'>Chat</a>
-        <a href='/mypage'>MyPage</a>
-        <a href='/logout'>LogOut</a>
+        {!isLoggedIn ? (
+          <>
+            <button onClick={openSignInModal}>Login</button>
+            <a href='/'>Home</a>
+          </>
+        ) : (
+          <>
+            <a href='/post'>Post</a>
+            <a href='/chat'>Chat</a>
+            <a href='/mypage'>MyPage</a>
+            <button onClick={handleLogout}>LogOut</button>
+          </>
+        )}
         <button className={styles.hamburger} onClick={toggleCategoryMenu}>
           ☰
         </button>
