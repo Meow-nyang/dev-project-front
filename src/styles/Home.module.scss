@@ -23,6 +23,7 @@
 
 .search {
   position: relative;
+  z-index: -1;
   width: 516px;
   height: 46px;
   flex-shrink: 0;
