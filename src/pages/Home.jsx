@@ -6,6 +6,7 @@ import locationIcon from '../assets/location2.svg';
 import BelowIcon from '../assets/below_icon.svg';
 import Location from '../components/Location';
 import NextIcon from '../assets/next_button.svg';
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 
 const dummyData = Array.from({ length: 45 }, (_, i) => ({
   id: i + 1,
