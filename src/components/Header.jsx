@@ -49,7 +49,6 @@ const Header = () => {
 
       {/* Search */}
       <div className={styles.search}>
-        <img src={searchIcon} alt='Search' className={styles.search__icon} />
         <input
           type='text'
           placeholder='검색어를 입력하세요'
@@ -59,34 +58,25 @@ const Header = () => {
 
       {/* Menu */}
       <nav className={styles.menu}>
+        {/* 로그인 상태에 따라 메뉴 표시 */}
         {!isLoggedIn ? (
-          <div className={styles.menuLeft}>
+          <>
             <a onClick={openSignInModal} className={styles.loginbotton}>
               Login
             </a>
             <a href='/'>Home</a>
-          </div>
-        ) : (
-          <>
-            <a href='/post'>Post</a>
-            <a href='/chat'>Chat</a>
-            <a href='/mypage'>MyPage</a>
-            <a onClick={handleLogout}>LogOut</a>
-          </>
-        )}
-        {!isLoggedIn ? (
-          <>
-            <button onClick={openSignInModal}>Login</button>
-            <a href='/'>Home</a>
           </>
         ) : (
           <>
             <a href='/post'>Post</a>
-            <a href='/chat'>Chat</a>
+            <Link to='/chat' state={chatData}>
+              <button className={styles.button}>Chat</button>
+            </Link>
             <a href='/mypage'>MyPage</a>
             <button onClick={handleLogout}>LogOut</button>
           </>
         )}
+        {/* 햄버거 메뉴 버튼 */}
         <button className={styles.hamburger} onClick={toggleCategoryMenu}>
           ☰
         </button>
