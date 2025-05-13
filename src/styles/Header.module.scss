@@ -66,16 +66,30 @@
   align-items: center;
   width: 400px;
   gap: 40px;
+}
 
-  a {
-    text-decoration: none;
-    color: #3b3c4a;
-    font-size: 16px;
+.menu a {
+  text-decoration: none;
+  color: #3b3c4a;
+  font-size: 16px;
+}
 
-    &:hover {
-      color: #1c5cff;
-    }
-  }
+.menu a:hover {
+  color: #1c5cff;
+}
+
+.button {
+  text-decoration: none;
+  color: #3b3c4a;
+  font-size: 16px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: #1c5cff;
 }
 
 .hamburger {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/image.svg';
 import searchIcon from '../assets/SearchImage.svg';
 import styles from '../styles/Header.module.scss';
@@ -7,6 +8,12 @@ import SignIn from './SignIn';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
+
+  // 채팅 데이터 생성 (서버 연결 없이 테스트용)
+  const chatData = {
+    roomId: 1,
+    roomName: '디지털 상품 채팅',
+  };
 
   const toggleCategoryMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -39,12 +46,14 @@ const Header = () => {
       </div>
       {/* Menu */}
       <nav className={styles.menu}>
-        <button onClick={openSignInModal}>Login</button>
-        <a href='/'>Home</a>
-        <a href='/post'>Post</a>
-        <a href='/chat'>Chat</a>
-        <a href='/mypage'>MyPage</a>
-        <a href='/logout'>LogOut</a>
+        <Link to='/'>Home</Link>
+        <Link to='/post'>Post</Link>
+
+        <Link to='/chat' state={chatData}>
+          <button className={styles.button}>Chat</button>
+        </Link>
+        <Link to='/mypage'>MyPage</Link>
+        <Link to='/logout'>LogOut</Link>
         <button className={styles.hamburger} onClick={toggleCategoryMenu}>
           ☰
         </button>
