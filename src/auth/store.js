@@ -1,6 +1,5 @@
 import createStore from 'react-auth-kit/createStore';
 import createRefresh from 'react-auth-kit/createRefresh';
-import { redirect } from 'react-router-dom';
 
 const refresh = createRefresh({
   interval: 30,

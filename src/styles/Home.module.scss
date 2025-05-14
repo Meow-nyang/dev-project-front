@@ -1,5 +1,89 @@
 .home {
-  //padding: 105px;
+  padding: 10px;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: 20px; // 버튼과 검색창 사이 간격
+  margin-left: 100px; 
+  margin-bottom: 180px;
+   justify-content: center;
+}
+
+.locationbotton {
+  border: none;
+  background: #1C5CFF;
+  border-radius: 25px;
+  color: white; // ✅ This sets the text color inside the button
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px; // if you want space between icon and text
+  text-align: center;
+  font-weight: 700; 
+  font-size: 15px;
+  width: 147px;
+  height: 56px;
+   cursor: pointer; 
+   transition: background-color 0.3s ease;
+}
+.locationbotton:hover {
+  background-color: #005299; /* 마우스 호버 시 변경될 배경색 */
+}
+
+.recommendbutton{
+  width: 1350px;
+  height: 48px;
+  background: #1C5CFF;
+  border-radius: 25px;
+   margin-left: auto;
+  margin-right: auto;
+  color: white; 
+  text-align: center; 
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0%;
+  padding-top: 20px;
+  margin-bottom: 30px;
+  cursor: pointer; 
+   transition: background-color 0.3s ease;
+}
+
+.recommendbutton:hover {
+  background-color: #005299; /* 마우스 호버 시 변경될 배경색 */
+}
+
+.search {
+  position: relative;
+  z-index: -1;
+  width: 687px;
+  height: 56px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 62.855px;
+  border: 1.209px solid #dadada;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  margin-right: 50px;
+
+  &__icon {
+    width: 16.922px;
+    height: 16.922px;
+    flex-shrink: 0;
+    margin-right: 12px;
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+    background: transparent;
+  }
 }
 
 .cardGrid {

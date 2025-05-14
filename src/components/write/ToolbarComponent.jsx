@@ -248,7 +248,7 @@ function ToolbarComponent({ onClick }) {
           <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"></path>
         </svg>
       </button>
-      <button
+      {/*<button
         className={styles.toolBarButtonContainer}
         onClick={() => onClick('codeblock')}
       >
@@ -263,7 +263,7 @@ function ToolbarComponent({ onClick }) {
         >
           <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"></path>
         </svg>
-      </button>
+      </button>*/}
     </div>
   );
 }

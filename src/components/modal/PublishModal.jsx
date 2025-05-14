@@ -99,7 +99,7 @@ function PublishModal({ title, tags, markdown, onClose }) {
                   </div>
                 </div>
               </div>
-              <div style={{ marginTop: '1.5rem' }}>
+              {/*<div style={{ marginTop: '1.5rem' }}>
                 <h4 className={styles.modalTestAreaH4}>테스트용 글쓰기</h4>
                 <textarea
                   placeholder="당신의 포스트를 짧게 소개해보세요."
@@ -107,14 +107,14 @@ function PublishModal({ title, tags, markdown, onClose }) {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
-              </div>
+              </div>*/}
             </div>
           </section>
         </div>
         <div className={styles.modalMiddleSection}></div>
         <div className={styles.modalRightSection}>
           <div>
-            <section className={styles.modalSetPublicButton}>
+            {/*<section className={styles.modalSetPublicButton}>
               <h3 className={styles.modalSetPublicH3}>공개 설정</h3>
               <div className={styles.modalPublicSection}>
                 <button
@@ -142,7 +142,7 @@ function PublishModal({ title, tags, markdown, onClose }) {
                   <div className={styles.modalPublicDiv}>비공개</div>
                 </button>
               </div>
-            </section>
+            </section>*/}
             <section className={styles.modalDivideSection}>
               <h3 className={styles.modalUrlH3}>URL 설정</h3>
               <div className="contents">
@@ -151,7 +151,7 @@ function PublishModal({ title, tags, markdown, onClose }) {
                 </div>
               </div>
             </section>
-            <section className={styles.modalDivideSection}>
+            {/*<section className={styles.modalDivideSection}>
               <h3 className={styles.modalSeriesH3}>시리즈 설정</h3>
               <div className="contents">
                 <button className={styles.modalSeriesButton}>
@@ -166,7 +166,7 @@ function PublishModal({ title, tags, markdown, onClose }) {
                   시리즈에 추가하기
                 </button>
               </div>
-            </section>
+            </section>*/}
           </div>
           <div className={styles.modalSubmitSection}>
             <button
