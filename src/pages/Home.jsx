@@ -21,15 +21,22 @@ const Home = () => {
   const [isLocationOpen, setIsLocationOpen] = useState(false); // 위치 모달 상태
 
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태
   const start = (currentPage - 1) * ITEMS_PER_PAGE;
   const end = start + ITEMS_PER_PAGE;
   const currentItems = dummyData.slice(start, end);
   const totalPages = Math.ceil(dummyData.length / ITEMS_PER_PAGE);
 
-  const handlesearch = () => {
-    console.log('Next icon clicked!');
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+    console.log('입력 값:', event.target.value); // 추가된 부분
   };
+
+  const handlesearch = () => {
+    console.log('검색어:', searchTerm);
+    // 실제 검색 로직 구현 (예: API 호출 등)
+  };
+
   const openLocationModal = () => {
     setIsLocationOpen(true);
   };
@@ -61,6 +68,8 @@ const Home = () => {
             type='text'
             placeholder='검색어를 입력하세요'
             className={styles.search__input}
+            value={searchTerm} // 상태 변수와 연결
+            onChange={handleInputChange} // 이벤트 핸들러 연결
           />
           <a onClick={handlesearch}>
             <img src={NextIcon} alt='Search' />
