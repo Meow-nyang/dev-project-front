@@ -68,17 +68,20 @@ export default function SignupForm() {
 
     try {
       // API 명세서에 따른 회원가입 요청
-      const response = await fetch('/user/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_API}${import.meta.env.VITE_USER}/signup`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+          }),
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
+      );
 
       const data = await response.json();
 
@@ -103,7 +106,7 @@ export default function SignupForm() {
             {formData.name}님, 가입을 축하합니다!
           </p>
           <button
-            onClick={() => (window.location.href = '/login')}
+            onClick={() => (window.location.href = '/home')}
             className='login-button'
           >
             로그인 페이지로 이동
