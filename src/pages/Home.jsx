@@ -46,7 +46,7 @@ const Home = () => {
             params: {
               page: currentPage - 1,
               size: ITEMS_PER_PAGE,
-              sort: 'updatedAt,Desc',
+              sort: 'createdAt,Desc',
             },
           },
         );

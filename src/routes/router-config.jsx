@@ -9,7 +9,8 @@ import Home from '../pages/Home.jsx';
 import Post from '../pages/Post.jsx';
 import Chatting from '../pages/Chatting.jsx';
 import Signup from '../pages/SignupForm.jsx';
-import BoardDetailPage from '../pages/BoardDetailPage.jsx'; // ✅ 회원가입 컴포넌트 import
+import BoardDetailPage from '../pages/BoardDetailPage.jsx';
+import MyPage from '../pages/MyPage.jsx'; // ✅ 회원가입 컴포넌트 import
 
 export const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +32,7 @@ export const routes = createBrowserRouter(
           }}
           element={<BoardDetailPage />}
         />
+        <Route path='/mypage' element={<MyPage />} />
       </Route>
       <Route path='/post' element={<Post />} />
       <Route path='/signup' element={<Signup />} />
