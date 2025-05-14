@@ -48,15 +48,6 @@ const Header = () => {
         </Link>
       </div>
 
-      {/* Search */}
-      <div className={styles.search}>
-        <input
-          type='text'
-          placeholder='검색어를 입력하세요'
-          className={styles.search__input}
-        />
-      </div>
-
       {/* Menu */}
       <nav className={styles.menu}>
         {/* 로그인 상태에 따라 메뉴 표시 */}
