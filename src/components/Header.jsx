@@ -48,6 +48,15 @@ const Header = () => {
         </Link>
       </div>
 
+      {/* Search */}
+      <div className={styles.search}>
+        <input
+          type='text'
+          placeholder='검색어를 입력하세요'
+          className={styles.search__input}
+        />
+      </div>
+
       {/* Menu */}
       <nav className={styles.menu}>
         {/* 로그인 상태에 따라 메뉴 표시 */}
@@ -57,24 +66,21 @@ const Header = () => {
               Login
             </a>
             <a href='/'>Home</a>
-            <Link to='/chat' state={chatData}>
-              <button className={styles.button}>Chat</button>
-            </Link>
           </>
         ) : (
           <>
             <a href='/post'>Post</a>
-            {/* <Link to='/chat' state={chatData}>
+            <Link to='/chat' state={chatData}>
               <button className={styles.button}>Chat</button>
-            </Link> */}
+            </Link>
             <a href='/mypage'>MyPage</a>
             <button onClick={handleLogout}>LogOut</button>
           </>
         )}
         {/* 햄버거 메뉴 버튼 */}
-        <a className={styles.hamburger} onClick={toggleCategoryMenu}>
+        <button className={styles.hamburger} onClick={toggleCategoryMenu}>
           ☰
-        </a>
+        </button>
       </nav>
 
       {/* Category Modal */}
