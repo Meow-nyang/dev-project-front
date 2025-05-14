@@ -7,6 +7,7 @@
   position: relative;
   margin-top: 50px;
   //padding: 0 10px; /* 기존 padding 유지 또는 필요에 따라 조정 */
+  cursor: pointer;
 }
 
 // .menuLeft {
@@ -102,7 +103,6 @@
 .button:hover {
   color: #1c5cff;
 }
-
 
 .hamburger {
   font-size: 20px;
