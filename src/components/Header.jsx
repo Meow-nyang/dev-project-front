@@ -43,7 +43,9 @@ const Header = () => {
       {/* Logo */}
       <div className={styles.logo}>
         <img src={logo} alt='My Logo' className={styles.logo__img} />
-        <span className={styles.logo__text}>세컨존</span>
+        <Link to='/' className={styles.logo__text}>
+          세컨존
+        </Link>
       </div>
 
       {/* Menu */}

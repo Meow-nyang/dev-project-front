@@ -47,6 +47,7 @@
       font-style: normal;
       font-weight: 700;
       line-height: normal;
+      text-decoration: none;
     }
   }
 
@@ -56,8 +57,8 @@
     display: flex;
     gap: 77px;
 
-    p {
-      width: auto;
+    .menuItem {
+      display: inline-block;
       min-width: 54px;
       height: 24px;
 
@@ -70,9 +71,13 @@
 
       text-align: center;
       cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        color: #1c5cff;
+      }
     }
   }
-
   .location {
     display: flex;
     width: 285px;

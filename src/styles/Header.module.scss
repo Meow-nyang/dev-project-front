@@ -34,6 +34,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    text-decoration: none;
   }
 }
 
@@ -74,7 +75,6 @@
   margin-left: auto; /* 메뉴를 오른쪽으로 이동 */
 }
 
-
 .menu a {
   text-decoration: none;
   color: #3b3c4a;
@@ -98,7 +98,6 @@
 .button:hover {
   color: #1c5cff;
 }
-
 
 .hamburger {
   font-size: 20px;
