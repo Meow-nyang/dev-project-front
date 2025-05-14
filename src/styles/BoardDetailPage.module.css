@@ -1,0 +1,39 @@
+.productTopSection {
+  display: flex;
+  padding: 30px 0;
+  margin: 0 auto;
+  width: 1100px;
+}
+
+.imageSection {
+  margin-right: 40px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.productSummarySection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 530px;
+  height: 430px;
+}
+
+.purchaseBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+  height: 100%;
+  background: rgb(247, 0, 0);
+  border: 1px solid rgb(223, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.productMainSection {
+  width: 1100px;
+  margin: 0 auto;
+}

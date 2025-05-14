@@ -124,7 +124,7 @@ const Home = () => {
 
       <div className={styles.home}>
         <div className={styles.cardGrid}>
-          {posts.map((item) => (
+          {posts?.map((item) => (
             <Link key={item.boardId} to={`board/${item.boardId}`}>
               <PostCard
                 key={item.id}
