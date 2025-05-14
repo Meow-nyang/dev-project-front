@@ -69,9 +69,9 @@ const Header = () => {
           </>
         )}
         {/* 햄버거 메뉴 버튼 */}
-        <button className={styles.hamburger} onClick={toggleCategoryMenu}>
+        <a className={styles.hamburger} onClick={toggleCategoryMenu}>
           ☰
-        </button>
+        </a>
       </nav>
 
       {/* Category Modal */}
