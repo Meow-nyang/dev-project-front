@@ -6,7 +6,7 @@
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.6);   ///배경에 픽스를 주고 투명도를 준다.
-
+  z-index: 2;
   .loginModal {
     width: 480px;
     height: 621px;

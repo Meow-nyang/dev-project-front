@@ -1,22 +1,29 @@
 import React, { useRef, useState } from 'react';
 import styles from './PublishModal.module.css';
 import { stripMarkdown } from '../../common/stripMarkdown.js';
-import { useSubmit } from 'react-router-dom';
+import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
+import { useNavigate } from 'react-router-dom';
 
 function PublishModal({ title, tags, markdown, onClose }) {
-  const [activeTab, setActiveTab] = useState('public');
-  const [description, setDescription] = useState(
-    stripMarkdown(markdown.slice(0, 50)),
-  );
+  // const [activeTab, setActiveTab] = useState('public');
+  // const [description, setDescription] = useState(
+  //   stripMarkdown(markdown.slice(0, 50)),
+  // );
+  const authHeader = useAuthHeader();
   const [imageUrl, setImageUrl] = useState('');
   const [imageDataUrl, setImageDataUrl] = useState(null);
+  const [currFile, setCurrFile] = useState(null);
   const fileInputRef = useRef(null);
-  const userId = localStorage.getItem('id');
-  const userPostUrl = `/@${userId}/posts`;
-  const submit = useSubmit();
+  const [category, setCategory] = useState('');
+  const [price, setPrice] = useState(0);
+  const [sido, setSido] = useState('');
+  const [sigungu, setSigungu] = useState('');
+  const [dong, setDong] = useState('');
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    setCurrFile(file);
     setImageUrl(`upload/${file.name}`);
     if (file) {
       const render = new FileReader();
@@ -34,8 +41,8 @@ function PublishModal({ title, tags, markdown, onClose }) {
       <div className={styles.modalSection}>
         <div className={styles.modalLeftSection}>
           <section>
-            <h3 className={styles.modalPreviewPostH3}>포스트 미리보기</h3>
-            <div className="contents">
+            <h3 className={styles.modalPreviewPostH3}>게시글 미리보기</h3>
+            <div className='contents'>
               {imageDataUrl ? (
                 <div className={styles.modalPreviewAdditionalAction}>
                   <button
@@ -63,24 +70,24 @@ function PublishModal({ title, tags, markdown, onClose }) {
                       <div className={styles.modalPreviewImageContainer}>
                         <img
                           src={imageDataUrl}
-                          alt="미리보기"
+                          alt='미리보기'
                           className={styles.modalPreviewImage}
                         />
                       </div>
                     ) : null}
                     <svg
-                      width="107"
-                      height="85"
-                      fill="none"
-                      viewBox="0 0 107 85"
+                      width='107'
+                      height='85'
+                      fill='none'
+                      viewBox='0 0 107 85'
                     >
                       <path
-                        fill="#868E96"
-                        d="M105.155 0H1.845A1.844 1.844 0 0 0 0 1.845v81.172c0 1.02.826 1.845 1.845 1.845h103.31A1.844 1.844 0 0 0 107 83.017V1.845C107 .825 106.174 0 105.155 0zm-1.845 81.172H3.69V3.69h99.62v77.482z"
+                        fill='#868E96'
+                        d='M105.155 0H1.845A1.844 1.844 0 0 0 0 1.845v81.172c0 1.02.826 1.845 1.845 1.845h103.31A1.844 1.844 0 0 0 107 83.017V1.845C107 .825 106.174 0 105.155 0zm-1.845 81.172H3.69V3.69h99.62v77.482z'
                       ></path>
                       <path
-                        fill="#868E96"
-                        d="M29.517 40.84c5.666 0 10.274-4.608 10.274-10.271 0-5.668-4.608-10.276-10.274-10.276-5.665 0-10.274 4.608-10.274 10.274 0 5.665 4.609 10.274 10.274 10.274zm0-16.857a6.593 6.593 0 0 1 6.584 6.584 6.593 6.593 0 0 1-6.584 6.584 6.591 6.591 0 0 1-6.584-6.582c0-3.629 2.954-6.586 6.584-6.586zM12.914 73.793a1.84 1.84 0 0 0 1.217-.46l30.095-26.495 19.005 19.004a1.843 1.843 0 0 0 2.609 0 1.843 1.843 0 0 0 0-2.609l-8.868-8.868 16.937-18.548 20.775 19.044a1.846 1.846 0 0 0 2.492-2.72L75.038 31.846a1.902 1.902 0 0 0-1.328-.483c-.489.022-.95.238-1.28.6L54.36 51.752l-8.75-8.75a1.847 1.847 0 0 0-2.523-.081l-31.394 27.64a1.845 1.845 0 0 0 1.22 3.231z"
+                        fill='#868E96'
+                        d='M29.517 40.84c5.666 0 10.274-4.608 10.274-10.271 0-5.668-4.608-10.276-10.274-10.276-5.665 0-10.274 4.608-10.274 10.274 0 5.665 4.609 10.274 10.274 10.274zm0-16.857a6.593 6.593 0 0 1 6.584 6.584 6.593 6.593 0 0 1-6.584 6.584 6.591 6.591 0 0 1-6.584-6.582c0-3.629 2.954-6.586 6.584-6.586zM12.914 73.793a1.84 1.84 0 0 0 1.217-.46l30.095-26.495 19.005 19.004a1.843 1.843 0 0 0 2.609 0 1.843 1.843 0 0 0 0-2.609l-8.868-8.868 16.937-18.548 20.775 19.044a1.846 1.846 0 0 0 2.492-2.72L75.038 31.846a1.902 1.902 0 0 0-1.328-.483c-.489.022-.95.238-1.28.6L54.36 51.752l-8.75-8.75a1.847 1.847 0 0 0-2.523-.081l-31.394 27.64a1.845 1.845 0 0 0 1.22 3.231z'
                       ></path>
                     </svg>
                     <button
@@ -90,8 +97,8 @@ function PublishModal({ title, tags, markdown, onClose }) {
                       썸네일 업로드
                     </button>
                     <input
-                      type="file"
-                      accept="images/*"
+                      type='file'
+                      accept='images/*'
                       ref={fileInputRef}
                       style={{ display: 'none' }}
                       onChange={handleFileChange}
@@ -108,6 +115,18 @@ function PublishModal({ title, tags, markdown, onClose }) {
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
               </div>*/}
+            </div>
+          </section>
+          <section className={styles.modalDivideSection}>
+            <h3 className={styles.modalUrlH3}>카테고리</h3>
+            <div className='contents'>
+              <div className={styles.modalUrlInputContainer}>
+                <input
+                  className={styles.modalUrlInput}
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+              </div>
             </div>
           </section>
         </div>
@@ -144,10 +163,51 @@ function PublishModal({ title, tags, markdown, onClose }) {
               </div>
             </section>*/}
             <section className={styles.modalDivideSection}>
-              <h3 className={styles.modalUrlH3}>URL 설정</h3>
-              <div className="contents">
+              <h3 className={styles.modalUrlH3}>가격</h3>
+              <div className='contents'>
                 <div className={styles.modalUrlInputContainer}>
-                  <input className={styles.modalUrlInput} value={userPostUrl} />
+                  <input
+                    type='number'
+                    className={styles.modalUrlInput}
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </div>
+              </div>
+            </section>
+            <section className={styles.modalDivideSection}>
+              <h3 className={styles.modalUrlH3}>시/도</h3>
+              <div className='contents'>
+                <div className={styles.modalUrlInputContainer}>
+                  <input
+                    className={styles.modalUrlInput}
+                    value={sido}
+                    onChange={(e) => setSido(e.target.value)}
+                  />
+                </div>
+              </div>
+            </section>
+            <section className={styles.modalDivideSection}>
+              <h3 className={styles.modalUrlH3}>시/군/구</h3>
+              <div className='contents'>
+                <div className={styles.modalUrlInputContainer}>
+                  <input
+                    className={styles.modalUrlInput}
+                    value={sigungu}
+                    onChange={(e) => setSigungu(e.target.value)}
+                  />
+                </div>
+              </div>
+            </section>
+            <section className={styles.modalDivideSection}>
+              <h3 className={styles.modalUrlH3}>동</h3>
+              <div className='contents'>
+                <div className={styles.modalUrlInputContainer}>
+                  <input
+                    className={styles.modalUrlInput}
+                    value={dong}
+                    onChange={(e) => setDong(e.target.value)}
+                  />
                 </div>
               </div>
             </section>
@@ -178,30 +238,29 @@ function PublishModal({ title, tags, markdown, onClose }) {
             <button
               className={styles.modalSubmitSectionPublishButton}
               onClick={() => {
-                const now = new Date(Date.now());
-                const year = now.getFullYear();
-                const month = String(now.getMonth() + 1).padStart(2, '0');
-                const day = String(now.getDate()).padStart(2, '0');
-                submit(
+                const formData = new FormData();
+                formData.append('title', title);
+                formData.append('content', markdown);
+                formData.append('price', price);
+                formData.append('category', category);
+                formData.append('sido', sido);
+                formData.append('sigungu', sigungu);
+                formData.append('dong', dong);
+                formData.append('tags', tags);
+                if (currFile) formData.append('files', currFile);
+
+                fetch(
+                  `${import.meta.env.VITE_BACKEND_API}${import.meta.env.VITE_BOARD}/create`,
                   {
-                    title,
-                    tags,
-                    link: userPostUrl,
-                    description,
-                    thumbnailUrl: imageDataUrl,
-                    likes: 0,
-                    comments: '0개의 댓글',
-                    author: userId,
-                    date: `${year}년 ${month}월 ${day}일`,
-                    authorLink: userPostUrl,
-                    authorImageUrl: null,
-                    isPublicPost: activeTab === 'public',
+                    method: 'POST',
+                    headers: {
+                      Authorization: authHeader,
+                    },
+                    body: formData,
                   },
-                  {
-                    method: 'post',
-                    encType: 'application/json',
-                  },
-                );
+                )
+                  .then((res) => navigate('/'))
+                  .catch((err) => alert(err));
               }}
             >
               출간하기
