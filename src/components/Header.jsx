@@ -46,15 +46,6 @@ const Header = () => {
         <span className={styles.logo__text}>세컨존</span>
       </div>
 
-      {/* Search */}
-      <div className={styles.search}>
-        <input
-          type='text'
-          placeholder='검색어를 입력하세요'
-          className={styles.search__input}
-        />
-      </div>
-
       {/* Menu */}
       <nav className={styles.menu}>
         {/* 로그인 상태에 따라 메뉴 표시 */}
@@ -76,9 +67,9 @@ const Header = () => {
           </>
         )}
         {/* 햄버거 메뉴 버튼 */}
-        <button className={styles.hamburger} onClick={toggleCategoryMenu}>
+        <a className={styles.hamburger} onClick={toggleCategoryMenu}>
           ☰
-        </button>
+        </a>
       </nav>
 
       {/* Category Modal */}

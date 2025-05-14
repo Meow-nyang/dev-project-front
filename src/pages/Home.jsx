@@ -43,6 +43,10 @@ const Home = () => {
     setIsLocationOpen(false); // 선택 후 모달 닫기
   };
 
+  const handlerecommend = () => {
+    console.log('recommend clicked!');
+  };
+
   return (
     <div className={styles.home}>
       <div className={styles.topBar}>
@@ -62,6 +66,10 @@ const Home = () => {
             <img src={NextIcon} alt='Search' />
           </a>
         </div>
+      </div>
+
+      <div className={styles.recommendbutton}>
+        <a onClick={handlerecommend}>오늘의 상품 추천</a>
       </div>
 
       <div className={styles.home}>
