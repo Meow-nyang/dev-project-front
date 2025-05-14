@@ -1,0 +1,174 @@
+
+$primary-color: #3b82f6; // 파란색 계열
+$primary-hover: #2563eb;
+$success-color: #10b981; // 초록색 계열
+$error-color: #ef4444; // 빨간색 계열
+$text-color: #1f2937;
+$light-text: #6b7280;
+$border-color: #d1d5db;
+$error-border: #f87171;
+$background-color: #f3f4f6;
+$white: #ffffff;
+$shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$transition: all 0.2s ease-in-out;
+
+// 믹스인
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin input-styles {
+  width: 96%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid $border-color;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  transition: $transition;
+  outline: none;
+  
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+  }
+
+  &.error {
+    border-color: $error-border;
+    
+    &:focus {
+      box-shadow: 0 0 0 2px rgba($error-color, 0.2);
+    }
+  }
+}
+
+@mixin button-styles {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: $primary-color;
+  color: $white;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: $transition;
+  
+  &:hover:not(:disabled) {
+    background-color: $primary-hover;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// 메인 스타일
+.signup-container {
+  @include flex-center;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $background-color;
+  padding: 1rem;
+}
+
+.signup-card {
+  width: 100%;
+  max-width: 50rem;
+  background-color: $white;
+  border-radius: 0.5rem;
+  box-shadow: $shadow;
+  padding: 1.5rem;
+}
+
+.signup-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $text-color;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  
+  &:last-of-type {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $text-color;
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  @include input-styles;
+}
+
+.error-message {
+  font-size: 0.75rem;
+  color: $error-color;
+  margin-top: 0.25rem;
+}
+
+.api-error {
+  background-color: rgba($error-color, 0.1);
+  border: 1px solid rgba($error-color, 0.3);
+  color: $error-color;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+.signup-button {
+  @include button-styles;
+}
+
+.login-link-container {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.login-link-text {
+  font-size: 0.875rem;
+  color: $light-text;
+}
+
+.login-link {
+  color: $primary-color;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// 성공 화면
+.success-container {
+  @extend .signup-container;
+}
+
+.success-card {
+  @extend .signup-card;
+  text-align: center;
+}
+
+.success-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $success-color;
+  margin-bottom: 0.5rem;
+}
+
+.success-message {
+  color: $text-color;
+  margin-bottom: 1rem;
+}
+
+.login-button {
+  @include button-styles;
+}
