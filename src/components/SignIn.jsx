@@ -24,13 +24,16 @@ const SignIn = ({ isOpen, close }) => {
     e.preventDefault();
     const { email, password } = form;
 
-    fetch(`${import.meta.env.VITE_BACKEND_API}${import.meta.env.VITE_USER}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    fetch(
+      `${import.meta.env.VITE_BACKEND_API}${import.meta.env.VITE_USER}/login`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
       },
-      body: JSON.stringify({ email, password }),
-    })
+    )
       .then((res) => {
         if (res.status !== 200) throw new Error('로그인 오류');
         return res.json();
@@ -55,7 +58,8 @@ const SignIn = ({ isOpen, close }) => {
         } else {
           alert('로그인 오류');
         }
-      }).catch(err => alert(err));
+      })
+      .catch((err) => alert(err));
   };
 
   if (!isOpen) return null;
