@@ -1,7 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from '../styles/Chatting.module.scss';
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
+import { Navigate } from 'react-router-dom';
 
 const Chatting = () => {
+  const isAuthenticated = useIsAuthenticated();
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -33,6 +36,8 @@ const Chatting = () => {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  if (!isAuthenticated) return <Navigate to={'/'} replace />;
 
   // 메시지 전송 핸들러
   const handleSendMessage = (e) => {
