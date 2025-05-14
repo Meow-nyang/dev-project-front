@@ -43,7 +43,9 @@ const Header = () => {
       {/* Logo */}
       <div className={styles.logo}>
         <img src={logo} alt='My Logo' className={styles.logo__img} />
-        <span className={styles.logo__text}>세컨존</span>
+        <Link to='/' className={styles.logo__text}>
+          세컨존
+        </Link>
       </div>
 
       {/* Menu */}
@@ -67,9 +69,9 @@ const Header = () => {
           </>
         )}
         {/* 햄버거 메뉴 버튼 */}
-        <a className={styles.hamburger} onClick={toggleCategoryMenu}>
+        <button className={styles.hamburger} onClick={toggleCategoryMenu}>
           ☰
-        </a>
+        </button>
       </nav>
 
       {/* Category Modal */}

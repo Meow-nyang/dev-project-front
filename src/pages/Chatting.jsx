@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import styles from '../styles/Chatting.module.scss';
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
 import { Navigate } from 'react-router-dom';
+import { Client } from '@stomp/stompjs';
 
 const Chatting = () => {
   const isAuthenticated = useIsAuthenticated();
@@ -31,39 +32,61 @@ const Chatting = () => {
   ]);
   const [selectedRoom, setSelectedRoom] = useState(1);
   const messagesEndRef = useRef(null);
+  const [client, setClient] = useState(null);
 
   // 메시지 자동 스크롤
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+    const stompClient = new Client({
+      brokerURL: 'ws://localhost:8080/ws', // Spring 서버의 WebSocket 엔드포인트
+      reconnectDelay: 5000,
+      onConnect: () => {
+        console.log('STOMP 연결됨');
+
+        // 메시지 수신 구독
+        stompClient.subscribe(`/topic/chat/room/${selectedRoom}`, (message) => {
+          const received = JSON.parse(message.body);
+          setMessages((prev) => [
+            ...prev,
+            {
+              ...received,
+              id: prev.length + 1,
+            },
+          ]);
+        });
+      },
+      onStompError: (frame) => {
+        console.error('STOMP 에러:', frame.headers['message']);
+      },
+    });
+
+    stompClient.activate();
+    setClient(stompClient); // 나중에 메시지 보낼 때 사용
+
+    return () => {
+      stompClient.deactivate(); // cleanup
+    };
+  }, [selectedRoom]);
 
   if (!isAuthenticated) return <Navigate to={'/'} replace />;
 
   // 메시지 전송 핸들러
   const handleSendMessage = (e) => {
     e.preventDefault();
-    if (inputText.trim() === '') return;
+    if (!client || inputText.trim() === '') return;
 
-    // 사용자 메시지 추가
     const userMessage = {
-      id: messages.length + 1,
-      text: inputText,
       sender: 'user',
+      text: inputText,
+      roomId: selectedRoom,
       timestamp: new Date(),
     };
-    setMessages([...messages, userMessage]);
-    setInputText('');
 
-    // 자동 응답 (서버 연결 없이 테스트용)
-    setTimeout(() => {
-      const botResponse = {
-        id: messages.length + 2,
-        text: `"${inputText}"에 대한 응답입니다. 실제 서버 연결 시 이 부분이 대체됩니다.`,
-        sender: 'other',
-        timestamp: new Date(),
-      };
-      setMessages((prevMessages) => [...prevMessages, botResponse]);
-    }, 1000);
+    client.publish({
+      destination: '/app/chat/message', // Spring의 @MessageMapping 경로
+      body: JSON.stringify(userMessage),
+    });
+
+    setInputText('');
   };
 
   // 채팅방 선택 핸들러
@@ -142,7 +165,7 @@ const Chatting = () => {
               <div className={styles.messageContent}>
                 <p>{message.text}</p>
                 <span className={styles.timestamp}>
-                  {formatTime(message.timestamp)}
+                  {formatTime(new Date(message.timestamp))}
                 </span>
               </div>
             </div>
