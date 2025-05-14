@@ -8,6 +8,7 @@ import Location from '../components/Location';
 import NextIcon from '../assets/next_button.svg';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const dummyData = Array.from({ length: 45 }, (_, i) => ({
   id: i + 1,
@@ -33,27 +34,29 @@ const Home = () => {
   const [error, setError] = useState(null); // 에러 처리용
 
   const currentItems = posts.slice(start, end); // dummyData → posts
-  const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     const fetchPosts = async () => {
+      console.log('fetchPosts 함수 작동 중');
       setLoading(true); // 로딩 시작
       try {
         const response = await axios.get(
-          'http://localhost:8000/board-service/board/boards',
+          `${import.meta.env.VITE_BACKEND_API}${import.meta.env.VITE_BOARD}/boards`,
           {
             params: {
               page: currentPage - 1, // ✅ React는 1부터 시작, Spring은 0부터
               size: ITEMS_PER_PAGE,
+              sort: 'updatedAt,Desc',
             },
           },
         );
 
         // ✅ 서버 응답 구조가 CommonResDto 라면 result 내부가 실제 데이터
-        const boardList = response.data.result;
+        const boardList = response.data.result.boards;
 
         setPosts(boardList); // 게시글 목록 상태 저장
-        setTotalPages(Math.ceil(boardList.length / ITEMS_PER_PAGE)); // 페이지 수 계산 (임시)
+        setTotalPages(response.data.result.totalPage); // 페이지 수 계산 (임시)
       } catch (err) {
         setError(err); // 에러 저장
       } finally {
@@ -121,12 +124,15 @@ const Home = () => {
       <div className={styles.home}>
         <div className={styles.cardGrid}>
           {currentItems.map((item) => (
-            <PostCard
-              key={item.id}
-              title={item.title}
-              imageUrl={item.imageUrl}
-              content={item.content}
-            />
+            <Link key={item.boardId} to={`board/${item.boardId}`}>
+              <PostCard
+                key={item.id}
+                title={item.title}
+                imageUrl={item.imageUrl}
+                content={item.content}
+                location={`${item.sido || ''} ${item.sigungu || ''} ${item.dong || ''}`}
+              />
+            </Link>
           ))}
         </div>
 
