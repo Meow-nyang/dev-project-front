@@ -33,7 +33,6 @@ const Home = () => {
   const [loading, setLoading] = useState(true); // 로딩 상태
   const [error, setError] = useState(null); // 에러 처리용
 
-  const currentItems = posts.slice(start, end); // dummyData → posts
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
@@ -55,10 +54,12 @@ const Home = () => {
         // ✅ 서버 응답 구조가 CommonResDto 라면 result 내부가 실제 데이터
         const boardList = response.data.result.boards;
 
+        console.log(boardList);
         setPosts(boardList); // 게시글 목록 상태 저장
         setTotalPages(response.data.result.totalPage); // 페이지 수 계산 (임시)
       } catch (err) {
         setError(err); // 에러 저장
+        console.error(err);
       } finally {
         setLoading(false); // 로딩 끝
       }
@@ -123,7 +124,7 @@ const Home = () => {
 
       <div className={styles.home}>
         <div className={styles.cardGrid}>
-          {currentItems.map((item) => (
+          {posts.map((item) => (
             <Link key={item.boardId} to={`board/${item.boardId}`}>
               <PostCard
                 key={item.id}
