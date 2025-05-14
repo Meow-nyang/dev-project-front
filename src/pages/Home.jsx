@@ -43,13 +43,12 @@ const Home = () => {
           'http://localhost:8000/board-service/board/boards',
           {
             params: {
-              page: currentPage - 1, // ✅ React는 1부터 시작, Spring은 0부터
+              page: currentPage - 1,
               size: ITEMS_PER_PAGE,
             },
           },
         );
 
-        // ✅ 서버 응답 구조가 CommonResDto 라면 result 내부가 실제 데이터
         const boardList = response.data.result;
 
         setPosts(boardList); // 게시글 목록 상태 저장
