@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PostCard from '../components/PostCard';
 import styles from '../styles/Home.module.scss';
 import searchIcon from '../assets/SearchImage.svg';
@@ -7,6 +7,7 @@ import BelowIcon from '../assets/below_icon.svg';
 import Location from '../components/Location';
 import NextIcon from '../assets/next_button.svg';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+import axios from 'axios';
 
 const dummyData = Array.from({ length: 45 }, (_, i) => ({
   id: i + 1,
@@ -24,8 +25,44 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태
   const start = (currentPage - 1) * ITEMS_PER_PAGE;
   const end = start + ITEMS_PER_PAGE;
-  const currentItems = dummyData.slice(start, end);
-  const totalPages = Math.ceil(dummyData.length / ITEMS_PER_PAGE);
+  // const currentItems = dummyData.slice(start, end);
+  // const totalPages = Math.ceil(dummyData.length / ITEMS_PER_PAGE);
+
+  const [posts, setPosts] = useState([]); // 실제 데이터 저장
+  const [loading, setLoading] = useState(true); // 로딩 상태
+  const [error, setError] = useState(null); // 에러 처리용
+
+  const currentItems = posts.slice(start, end); // dummyData → posts
+  const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true); // 로딩 시작
+      try {
+        const response = await axios.get(
+          'http://localhost:8000/board-service/board/boards',
+          {
+            params: {
+              page: currentPage - 1, // ✅ React는 1부터 시작, Spring은 0부터
+              size: ITEMS_PER_PAGE,
+            },
+          },
+        );
+
+        // ✅ 서버 응답 구조가 CommonResDto 라면 result 내부가 실제 데이터
+        const boardList = response.data.result;
+
+        setPosts(boardList); // 게시글 목록 상태 저장
+        setTotalPages(Math.ceil(boardList.length / ITEMS_PER_PAGE)); // 페이지 수 계산 (임시)
+      } catch (err) {
+        setError(err); // 에러 저장
+      } finally {
+        setLoading(false); // 로딩 끝
+      }
+    };
+
+    fetchPosts(); // 함수 호출
+  }, [currentPage]); // 페이지 바뀔 때마다 실행됨
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -84,7 +121,12 @@ const Home = () => {
       <div className={styles.home}>
         <div className={styles.cardGrid}>
           {currentItems.map((item) => (
-            <PostCard key={item.id} title={item.title} content={item.content} />
+            <PostCard
+              key={item.id}
+              title={item.title}
+              imageUrl={item.imageUrl}
+              content={item.content}
+            />
           ))}
         </div>
 

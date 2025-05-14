@@ -65,7 +65,7 @@ const Header = () => {
               <button className={styles.button}>Chat</button>
             </Link>
             <a href='/mypage'>MyPage</a>
-            <button onClick={handleLogout}>LogOut</button>
+            <a onClick={handleLogout}>LogOut</a>
           </>
         )}
         {/* 햄버거 메뉴 버튼 */}
