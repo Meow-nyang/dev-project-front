@@ -57,13 +57,16 @@ const Header = () => {
               Login
             </a>
             <a href='/'>Home</a>
+            <Link to='/chat' state={chatData}>
+              <button className={styles.button}>Chat</button>
+            </Link>
           </>
         ) : (
           <>
             <a href='/post'>Post</a>
-            <Link to='/chat' state={chatData}>
+            {/* <Link to='/chat' state={chatData}>
               <button className={styles.button}>Chat</button>
-            </Link>
+            </Link> */}
             <a href='/mypage'>MyPage</a>
             <button onClick={handleLogout}>LogOut</button>
           </>

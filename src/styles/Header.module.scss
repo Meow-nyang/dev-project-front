@@ -9,13 +9,19 @@
   //padding: 0 10px; /* 기존 padding 유지 또는 필요에 따라 조정 */
 }
 
+<<<<<<< HEAD
 // .menuLeft {
 //   display: flex;
 //   align-items: center;
 //   gap: 20px; // ✅ Login과 Home 사이 간격
 // }
-
-.logo {
+=======
+.menuLeft {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+>>>>>>>9238152 (헤더 부분에 그냥 chat 기능 넣어버림(데베 이슈)) .logo {
   display: flex;
   height: 35px;
   padding: 0px 86px 0.313px 0px;
@@ -99,6 +105,9 @@
   color: #1c5cff;
 }
 
+.loginbotton {
+}
+
 .hamburger {
   font-size: 20px;
   cursor: pointer;
@@ -113,7 +122,7 @@
   z-index: 10;
   border-color: #ccc;
   border-width: 0.01cm;
-   border-style: solid; /* 테두리 스타일 추가 */
+  border-style: solid; /* 테두리 스타일 추가 */
   ul {
     list-style: none;
     margin: 0;
@@ -124,7 +133,7 @@
       cursor: pointer;
       border-bottom: 1px solid #ccc; /* 1px 두께의 회색 실선 */
       padding-bottom: 10px; /* 선과의 간격 (선택 사항) */
-      margin-bottom: 0px; /* 다음 li와의 간격 (선택 사항) */ 
+      margin-bottom: 0px; /* 다음 li와의 간격 (선택 사항) */
       width: 60%;
       text-align: center; /* 텍스트 가운데 정렬 */
 
