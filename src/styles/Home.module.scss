@@ -6,14 +6,14 @@
   display: flex;
   align-items: center;
   gap: 20px; // 버튼과 검색창 사이 간격
-  margin-left: 100px; 
+  margin-left: 100px;
   margin-bottom: 180px;
-   justify-content: center;
+  justify-content: center;
 }
 
 .locationbotton {
   border: none;
-  background: #1C5CFF;
+  background: #1c5cff;
   border-radius: 25px;
   color: white;
   padding: 10px 20px;
@@ -34,23 +34,20 @@
   background-color: #005299;
 }
 
-.recommendbutton{
-  width: 1350px;
+.recommendbutton {
   height: 70px;
-  background: #1C5CFF;
+  background: #1c5cff;
   border-radius: 25px;
-   margin-left: auto;
-  margin-right: auto;
-  color: white; 
-  text-align: center; 
+  color: white;
+  text-align: center;
   font-size: 25px;
   font-weight: 700;
   line-height: 100%;
   letter-spacing: 0%;
   padding-top: 20px;
   margin-bottom: 30px;
-  cursor: pointer; 
-   transition: background-color 0.3s ease;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .recommendbutton:hover {
@@ -108,7 +105,7 @@
   }
 
   .active {
-    background: #1C5CFF;
+    background: #1c5cff;
     color: white;
     border: none;
   }
