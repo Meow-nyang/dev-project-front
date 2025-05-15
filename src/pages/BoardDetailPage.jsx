@@ -41,7 +41,7 @@ const BoardDetailPage = () => {
             </div>
             <div>판매자: {result.userName}</div>
           </div>
-          {result.status === 'ON_SALE' && authUser.name !== result.userName && (
+          {result.status === 'ON_SALE' && authUser?.name !== result.userName && (
             <div className='flex justify-end gap-2.5 text-[18px] font-bold leading-normal h-[56px] items-center'>
               <button
                 className={styles.purchaseBtn}
