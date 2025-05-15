@@ -17,6 +17,9 @@ const BoardDetailPage = () => {
   console.log(boardId);
   return (
     <div>
+      <div className={styles.productMainSection}>
+        <MarkdownPreview title={result.title} />
+      </div>
       <div className={styles.productTopSection}>
         <img
           src={result.imageUrl}
@@ -69,10 +72,8 @@ const BoardDetailPage = () => {
               </button>
             </div>
           )}
+          <div> {result.content}</div>
         </div>
-      </div>
-      <div className={styles.productMainSection}>
-        <MarkdownPreview title={result.title} markdown={result.content} />
       </div>
     </div>
   );
