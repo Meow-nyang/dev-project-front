@@ -126,12 +126,12 @@
     padding: 0;
 
     li {
-      padding: 8px 16px;
+      padding: 8px 20px;
       cursor: pointer;
       border-bottom: 1px solid #ccc; /* 1px 두께의 회색 실선 */
       padding-bottom: 10px; /* 선과의 간격 (선택 사항) */
       margin-bottom: 0px; /* 다음 li와의 간격 (선택 사항) */
-      width: 60%;
+      width: 100%;
       text-align: center; /* 텍스트 가운데 정렬 */
 
       &:hover {
