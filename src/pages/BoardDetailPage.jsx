@@ -5,7 +5,7 @@ import MarkdownPreview from '../components/write/MarkdownPreview.jsx';
 import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
-
+import CommentBoard from './Comment.jsx';
 const BoardDetailPage = () => {
   const { result } = useLoaderData();
   const authHeader = useAuthHeader();
@@ -75,6 +75,7 @@ const BoardDetailPage = () => {
           <div> {result.content}</div>
         </div>
       </div>
+      <CommentBoard />
     </div>
   );
 };
