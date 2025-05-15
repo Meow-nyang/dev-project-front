@@ -9,6 +9,7 @@ import NextIcon from '../assets/next_button.svg';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Slide from './Slide';
 
 const dummyData = Array.from({ length: 45 }, (_, i) => ({
   id: i + 1,
@@ -96,66 +97,68 @@ const Home = () => {
   };
 
   return (
-    <div className={styles.home}>
-      <div className={styles.topBar}>
-        <button onClick={openLocationModal} className={styles.locationbotton}>
-          <img src={locationIcon} alt='위치' />
-          {selectedLocation}
-          <img src={BelowIcon} alt='위치' />
-        </button>
-
-        <div className={styles.search}>
-          <input
-            type='text'
-            placeholder='검색어를 입력하세요'
-            className={styles.search__input}
-            value={searchTerm} // 상태 변수와 연결
-            onChange={handleInputChange} // 이벤트 핸들러 연결
-          />
-          <a onClick={handlesearch}>
-            <img src={NextIcon} alt='Search' />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.recommendbutton}>
-        <a onClick={handlerecommend}>오늘의 상품 추천</a>
-      </div>
-
+    <>
       <div className={styles.home}>
-        <div className={styles.cardGrid}>
-          {posts?.map((item) => (
-            <Link key={item.boardId} to={`board/${item.boardId}`}>
-              <PostCard
-                key={item.id}
-                title={item.title}
-                imageUrl={item.imageUrl}
-                content={item.content}
-                location={`${item.sido || ''} ${item.sigungu || ''} ${item.dong || ''}`}
-              />
-            </Link>
-          ))}
+        <div className={styles.topBar}>
+          <button onClick={openLocationModal} className={styles.locationbotton}>
+            <img src={locationIcon} alt='위치' />
+            {selectedLocation}
+            <img src={BelowIcon} alt='위치' />
+          </button>
+
+          <div className={styles.search}>
+            <input
+              type='text'
+              placeholder='검색어를 입력하세요'
+              className={styles.search__input}
+              value={searchTerm} // 상태 변수와 연결
+              onChange={handleInputChange} // 이벤트 핸들러 연결
+            />
+            <a onClick={handlesearch}>
+              <img src={NextIcon} alt='Search' />
+            </a>
+          </div>
+        </div>
+        <Slide />
+        <div className={styles.recommendbutton}>
+          <a onClick={handlerecommend}>오늘의 상품 추천</a>
         </div>
 
-        <div className={styles.pagination}>
-          {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={currentPage === i + 1 ? styles.active : ''}
-            >
-              {i + 1}
-            </button>
-          ))}
+        <div className={styles.home}>
+          <div className={styles.cardGrid}>
+            {posts?.map((item) => (
+              <Link key={item.boardId} to={`board/${item.boardId}`}>
+                <PostCard
+                  key={item.id}
+                  title={item.title}
+                  imageUrl={item.imageUrl}
+                  content={item.content}
+                  location={`${item.sido || ''} ${item.sigungu || ''} ${item.dong || ''}`}
+                />
+              </Link>
+            ))}
+          </div>
+
+          <div className={styles.pagination}>
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentPage(i + 1)}
+                className={currentPage === i + 1 ? styles.active : ''}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
         </div>
+        {/* Location Modal */}
+        <Location
+          isOpen={isLocationOpen}
+          close={closeLocationModal}
+          onSelectLocation={handleLocationSelect} // 지역 선택 핸들러 전달
+        />
       </div>
-      {/* Location Modal */}
-      <Location
-        isOpen={isLocationOpen}
-        close={closeLocationModal}
-        onSelectLocation={handleLocationSelect} // 지역 선택 핸들러 전달
-      />
-    </div>
+    </>
   );
 };
 
