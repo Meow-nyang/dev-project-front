@@ -20,6 +20,7 @@ const BoardDetailPage = () => {
       <div className={styles.productMainSection}>
         <MarkdownPreview title={result.title} />
       </div>
+      <hr />
       <div className={styles.productTopSection}>
         <img
           src={result.imageUrl}
@@ -41,39 +42,43 @@ const BoardDetailPage = () => {
             </div>
             <div>판매자: {result.userName}</div>
           </div>
-          {result.status === 'ON_SALE' && authUser?.name !== result.userName && (
-            <div className='flex justify-end gap-2.5 text-[18px] font-bold leading-normal h-[56px] items-center'>
-              <button
-                className={styles.purchaseBtn}
-                onClick={() => {
-                  fetch(
-                    `${import.meta.env.VITE_BACKEND_API}${import.meta.env.VITE_TRADE}`,
-                    {
-                      method: 'POST',
-                      headers: {
-                        Authorization: authHeader,
-                        'Content-Type': 'application/json',
+          {result.status === 'ON_SALE' &&
+            authUser?.name !== result.userName && (
+              <div className='flex justify-end gap-2.5 text-[18px] font-bold leading-normal h-[56px] items-center'>
+                <button
+                  className={styles.purchaseBtn}
+                  onClick={() => {
+                    fetch(
+                      `${import.meta.env.VITE_BACKEND_API}${import.meta.env.VITE_TRADE}`,
+                      {
+                        method: 'POST',
+                        headers: {
+                          Authorization: authHeader,
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                          boardId,
+                          userName: authUser.name,
+                        }),
                       },
-                      body: JSON.stringify({
-                        boardId,
-                        userName: authUser.name,
-                      }),
-                    },
-                  )
-                    .then((res) => res.json())
-                    .then((res) => {
-                      alert('거래가 성공적으로 체결되었습니다.');
-                      window.location.reload();
-                    })
-                    .catch((err) => alert(err));
-                }}
-              >
-                바로구매
-              </button>
-            </div>
-          )}
-          <div> {result.content}</div>
+                    )
+                      .then((res) => res.json())
+                      .then((res) => {
+                        alert('거래가 성공적으로 체결되었습니다.');
+                        window.location.reload();
+                      })
+                      .catch((err) => alert(err));
+                  }}
+                >
+                  바로구매
+                </button>
+              </div>
+            )}
         </div>
+      </div>
+      <hr />
+      <div className={styles.productMainSection}>
+        <MarkdownPreview markdown={result.content} />
       </div>
       <CommentBoard />
     </div>
