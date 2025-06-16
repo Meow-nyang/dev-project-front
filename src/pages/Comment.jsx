@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import '../styles/Comment.scss';
+import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
 // 날짜 포맷팅 함수
 const formatDate = (date) => {
   const d = new Date(date);
@@ -157,46 +158,34 @@ const CommentForm = ({ onSubmit }) => {
 };
 
 // 메인 게시판 컴포넌트
-export default function CommentBoard() {
-  const [comments, setComments] = useState([]);
-
-  // 초기 데이터 로드 (실제로는 API에서 불러올 수 있음)
-  useEffect(() => {
-    const initialComments = [
-      {
-        id: 1,
-        author: '홍길동',
-        content: '안녕하세요, 첫 번째 댓글입니다.',
-        date: new Date('2025-05-15T10:30:00'),
-        replies: [
-          {
-            id: 2,
-            author: '김철수',
-            content: '안녕하세요, 답글입니다!',
-            date: new Date('2025-05-15T11:00:00'),
-            replies: [],
-          },
-        ],
-      },
-      {
-        id: 3,
-        author: '이영희',
-        content: '두 번째 댓글입니다. 반갑습니다!',
-        date: new Date('2025-05-15T12:15:00'),
-        replies: [],
-      },
-    ];
-    setComments(initialComments);
-  }, []);
-
+export default function CommentBoard({ comments: fetchComments, boardId }) {
+  const [comments, setComments] = useState(fetchComments);
+  const authHeader = useAuthHeader();
   // 새 댓글 추가
-  const addComment = (newComment) => {
+  const addComment = async (newComment) => {
     const comment = {
-      id: Date.now(),
       ...newComment,
       date: new Date(),
       replies: [],
     };
+
+    console.log(authHeader);
+    console.log(newComment);
+    const string = await fetch(
+      `${import.meta.env.VITE_BACKEND_API}${import.meta.env.VITE_COMMENT}`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: authHeader,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          boardId,
+          content: newComment.content,
+        }),
+      },
+    );
+    console.log(string);
     setComments([...comments, comment]);
   };
 
@@ -270,7 +259,7 @@ export default function CommentBoard() {
         <div className='comments-list'>
           {comments.map((comment) => (
             <Comment
-              key={comment.id}
+              key={comment.id || Date.now()}
               comment={comment}
               onEdit={editComment}
               onDelete={deleteComment}

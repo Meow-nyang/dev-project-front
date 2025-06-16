@@ -80,7 +80,7 @@ const BoardDetailPage = () => {
       <div className={styles.productMainSection}>
         <MarkdownPreview markdown={result.content} />
       </div>
-      <CommentBoard />
+      <CommentBoard comments={result.comments} boardId={boardId} />
     </div>
   );
 };
