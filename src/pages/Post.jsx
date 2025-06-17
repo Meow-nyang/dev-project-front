@@ -6,7 +6,7 @@ import 'codemirror/addon/display/placeholder';
 import WriteMarkdownEditor from '../components/write/WriteMarkdownEditor.jsx';
 import MarkdownPreview from '../components/write/MarkdownPreview.jsx';
 import { Navigate, redirect, useNavigate } from 'react-router-dom';
-import PublishModal from '../components/Modal/PublishModal.jsx';
+import PublishModal from '../components/modal/PublishModal.jsx';
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
 
 function PostWrite() {
@@ -33,7 +33,7 @@ function PostWrite() {
   };
 
   const isAuthenticated = useIsAuthenticated();
-  if (!isAuthenticated) return <Navigate to={"/"} replace />
+  if (!isAuthenticated) return <Navigate to={'/'} replace />;
 
   return (
     <>
@@ -46,7 +46,7 @@ function PostWrite() {
             onChangeTitle={handleChangeTitle}
             onChangeMarkdown={handleChangeMarkdown}
             onChangeTags={handleChangeTags} // 태그 변경 핸들러 추가
-            theme="light"
+            theme='light'
           />
           <footer>
             <div className={styles.footerSection}>
@@ -55,16 +55,16 @@ function PostWrite() {
                 onClick={() => navigate(-1)}
               >
                 <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  strokeWidth="0"
-                  viewBox="0 0 24 24"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
+                  stroke='currentColor'
+                  fill='currentColor'
+                  strokeWidth='0'
+                  viewBox='0 0 24 24'
+                  height='1em'
+                  width='1em'
+                  xmlns='http://www.w3.org/2000/svg'
                   className={styles.footerSvg}
                 >
-                  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+                  <path d='M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z'></path>
                 </svg>
                 <span className={styles.footerSpan}>나가기</span>
               </button>
