@@ -189,7 +189,7 @@ export default function CommentBoard({ comments: fetchComments, boardId }) {
     setComments([...comments, comment]);
   };
 
-  // 댓글 수정
+  // 댓글 수정 .
   const editComment = (id, newContent) => {
     const updateCommentTree = (commentsList) => {
       return commentsList.map((comment) => {
