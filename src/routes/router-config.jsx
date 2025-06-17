@@ -25,6 +25,8 @@ export const routes = createBrowserRouter(
             const res = await fetch(
               `${import.meta.env.VITE_BACKEND_API}${import.meta.env.VITE_BOARD}/${params.boardId}`,
             );
+            console.log(res);
+
             const data = await res.json();
             console.log(data);
 
