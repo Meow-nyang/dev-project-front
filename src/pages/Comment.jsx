@@ -44,7 +44,7 @@ const Comment = ({ comment, onEdit, onDelete, onReply, level = 0 }) => {
     >
       <div className='comment-header'>
         <span className='comment-author'>{comment.author}</span>
-        <span className='comment-date'>{formatDate(comment.createAt)}</span>
+        <span className='comment-date'>{formatDate(comment.createdAt)}</span>
       </div>
 
       {isEditing ? (
