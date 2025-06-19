@@ -66,6 +66,9 @@ export default function SignupForm() {
     setIsLoading(true);
     setApiError('');
 
+    console.log('BACKEND_API: ', import.meta.env.VITE_BACKEND_API);
+    console.log('USER_URL: ', import.meta.env.VITE_USER);
+
     try {
       // API 명세서에 따른 회원가입 요청
       const response = await fetch(
