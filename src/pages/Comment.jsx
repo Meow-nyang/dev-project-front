@@ -3,7 +3,11 @@ import '../styles/Comment.scss';
 import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
 // 날짜 포맷팅 함수
 const formatDate = (date) => {
+  console.log('전달받은 date: ', date);
+
   const d = new Date(date);
+  console.log('Date 객체로 변환: ', d);
+
   const year = d.getFullYear();
   const month = String(d.getMonth() + 1).padStart(2, '0');
   const day = String(d.getDate()).padStart(2, '0');
